@@ -14,14 +14,14 @@ import org.junit.Test;
 
 public class CompressTest {
 
-	Compress compress;
-	Extract extract;
+	Compressor compress;
+	Extractor extract;
 	
 	@Before
 	public void setup() {
-		extract = new Extract();
+		extract = new Extractor();
 		extract.setZipExtensions(new String[]{"zip"});
-		compress = new Compress();
+		compress = new Compressor();
 		compress.setZipExtensions(new String[]{"zip"});
 	}
 	
@@ -82,8 +82,8 @@ public class CompressTest {
 		fileList.addAll(files);
 		Assert.assertTrue(fileList.get(0).getName().equals("readme2.txt")||fileList.get(0).getName().equals("readme.txt"));
 		Assert.assertTrue(fileList.get(1).getName().equals("readme2.txt")||fileList.get(1).getName().equals("readme.txt"));
-		//FileUtils.deleteDirectory(new File(extractedDirectory));
-		//FileUtils.deleteQuietly(new File(compressedFileName));
+		FileUtils.deleteDirectory(new File(extractedDirectory));
+		FileUtils.forceDelete(new File(compressedFileName));
 	}
 	
 	

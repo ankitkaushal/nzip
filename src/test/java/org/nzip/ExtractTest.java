@@ -14,11 +14,11 @@ import org.junit.Test;
 
 public class ExtractTest {
 
-	Extract extract;
+	Extractor extract;
 	
 	@Before
 	public void setup() {
-		extract = new Extract();
+		extract = new Extractor();
 		extract.setZipExtensions(new String[]{"zip"});
 	}
 	@Test
