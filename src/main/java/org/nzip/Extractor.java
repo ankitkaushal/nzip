@@ -18,6 +18,7 @@ public class Extractor {
 	private String sourceFileName;
 	private String destinationDirectory;
 	private String[] zipExtensions;
+	private String zipDirectorySuffix = ".nzip";
 	
 	public void extract() {
 		fetch(sourceFileName,destinationDirectory);
@@ -41,7 +42,7 @@ public class Extractor {
 				String destinationFile = destinationDir+File.separator+zEn;
 				extractFile(zin,destinationFile);
 				if(isZip(zEn.getName())) {
-					String newDestinationDir = new File(destinationFile).getParentFile().getAbsolutePath()+ File.separator+ new File(destinationFile).getName()+".nzip";
+					String newDestinationDir = new File(destinationFile).getParentFile().getAbsolutePath()+ File.separator+ new File(destinationFile).getName()+zipDirectorySuffix;
 					fetch(destinationFile,newDestinationDir);
 					FileUtils.forceDelete(new File(destinationFile));
 				}
@@ -102,7 +103,7 @@ public class Extractor {
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("cannot read from file: "+ sourceFileName);
 			}
 	        try {
 	        	bos.close();

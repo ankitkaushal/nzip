@@ -29,6 +29,7 @@ public class Compressor {
 	private String destinationFile;
 	private String[] zipExtensions;
 	private Map<String,byte[]> streamsMap = new HashMap<String,byte[]>();
+	private String zipDirectorySuffix = ".nzip";
 	
 	public void compress() {
 		
@@ -70,7 +71,7 @@ public class Compressor {
 			@Override
 			public boolean accept(File pathname) {
 				// TODO Auto-generated method stub
-				if(pathname.isDirectory() && !pathname.getName().endsWith(".nzip"))
+				if(pathname.isDirectory() && !pathname.getName().endsWith(zipDirectorySuffix))
 					return true;
 				else
 					return false;
@@ -83,7 +84,7 @@ public class Compressor {
 			@Override
 			public boolean accept(File pathname) {
 				// TODO Auto-generated method stub
-				if(pathname.isDirectory() && pathname.getName().endsWith(".nzip"))
+				if(pathname.isDirectory() && pathname.getName().endsWith(zipDirectorySuffix))
 					return true;
 				else
 					return false;
@@ -97,7 +98,7 @@ public class Compressor {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			compressRecursive(file.getAbsolutePath(),file.getAbsolutePath(),bos,true);
 			String relativePath = new File(lastDirectoryWithoutZip).toURI().relativize(file.toURI()).getPath();
-			relativePath=relativePath.replace(".nzip","");
+			relativePath=relativePath.replace(zipDirectorySuffix,"");
 			streamsMap.put(relativePath,bos.toByteArray());
 			try {
 				FileUtils.deleteDirectory(file);
@@ -162,7 +163,17 @@ public class Compressor {
 				// TODO Auto-generated catch block
 				System.out.println("cannot write to file: "+destinationFile);
 			}
-			ByteArrayInputStream bis = new ByteArrayInputStream(streamsMap.get(relativePath +"/"));
+			
+			String directoryRelativePath =null;
+			
+			//because directory is deleted Java removes the trailing directory '/' 
+			
+			if(relativePath.endsWith("/"))
+				directoryRelativePath= relativePath;
+			else
+				directoryRelativePath = relativePath +"/";
+			
+			ByteArrayInputStream bis = new ByteArrayInputStream(streamsMap.get(directoryRelativePath));
 			byte[] buffer = new byte[256];
 			
 			int count;
