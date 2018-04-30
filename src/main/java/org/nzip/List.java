@@ -50,8 +50,6 @@ public class List {
 				String destinationFile = destinationDir+File.separator+zEn;
 				outputFile(destinationFile);
 				if(isZip(zEn.getName())) {
-					String newDestinationDir = new File(destinationFile).getParentFile().getAbsolutePath()+ File.separator+ new File(destinationFile).getName();
-					
 						ByteArrayOutputStream bos = new ByteArrayOutputStream();
 						byte[] bytesIn = new byte[256];
 						int read = 0;
@@ -65,7 +63,7 @@ public class List {
 						}
 						
 						ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-						list(bis, newDestinationDir);
+						list(bis, destinationFile);
 				 	}
 				}
 				
@@ -99,6 +97,7 @@ public class List {
 
 	private void outputFile(String filePath) {
 		System.out.println(filePath);
+		
 	}
 	
 }
