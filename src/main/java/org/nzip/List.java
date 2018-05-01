@@ -96,7 +96,7 @@ public class List {
 	}
 
 	private void outputFile(String filePath) {
-		System.out.println(filePath);
+		System.out.println(filePath.replaceAll("\\", "/"));
 		
 	}
 	
