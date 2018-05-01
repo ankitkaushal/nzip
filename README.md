@@ -24,5 +24,9 @@ The 'e' flag specifies the extensions that will be considered as zip directories
 
 Examples
 java -jar nzip.jar -c list -s <source fiile path> optional -e <extesions> 
+ 
+
 java -jar nzip.jar -c extract -s <source fiile path> -t <destination directory> optional -e <extesions> -u <suffix>
+ 
+ 
 java -jar nzip.jar -c compress -s <source directory> -t <destination file> optional -e <extesions> -u <suffix>
