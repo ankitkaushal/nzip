@@ -23,6 +23,10 @@ The 'e' flag specifies the extensions that will be considered as zip directories
 
 
 Examples
-java -jar nzip.jar -c list -s <source fiile path> optional -e <extesions> 
-java -jar nzip.jar -c extract -s <source fiile path> -t <destination directory> optional -e <extesions> -u <suffix>
-java -jar nzip.jar -c compress -s <source directory> -t <destination file> optional -e <extesions> -u <suffix>
+
+
+java -jar nzip.jar -c list -s readme.zip optional -e zip,war
+
+java -jar nzip.jar -c extract -s "C:\project\readme.zip" -t readme optional -e zip,war -u .nz
+
+java -jar nzip.jar -c compress -s readme -t "C:\project\readme.zip" optional -e zip -u .nz
