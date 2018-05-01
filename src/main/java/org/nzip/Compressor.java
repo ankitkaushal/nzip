@@ -174,6 +174,7 @@ public class Compressor {
 				directoryRelativePath = relativePath +"/";
 			
 			ByteArrayInputStream bis = new ByteArrayInputStream(streamsMap.get(directoryRelativePath));
+			streamsMap.remove(directoryRelativePath);
 			byte[] buffer = new byte[256];
 			
 			int count;
