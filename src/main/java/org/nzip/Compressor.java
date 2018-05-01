@@ -154,7 +154,7 @@ public class Compressor {
 		
 		for(File nFile:nestedZips) {
 			String relativePath = new File(lastDirectoryWithoutZip).toURI().relativize(nFile.toURI()).getPath();
-			relativePath=relativePath.replace(".nzip","");
+			relativePath=relativePath.replace(zipDirectorySuffix,"");
 			ZipEntry zipEntry = new ZipEntry(relativePath);
 			
 			try {
