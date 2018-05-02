@@ -100,13 +100,7 @@ public class Compressor {
 			String relativePath = new File(lastDirectoryWithoutZip).toURI().relativize(file.toURI()).getPath();
 			relativePath=relativePath.replace(zipDirectorySuffix,"");
 			streamsMap.put(relativePath,bos.toByteArray());
-			try {
-				FileUtils.deleteDirectory(file);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("cannot delete: "+file.getAbsolutePath());
-			}
-			
+
 		}
 		
 		
@@ -155,7 +149,7 @@ public class Compressor {
 		for(File nFile:nestedZips) {
 			String relativePath = new File(lastDirectoryWithoutZip).toURI().relativize(nFile.toURI()).getPath();
 			relativePath=relativePath.replace(zipDirectorySuffix,"");
-			ZipEntry zipEntry = new ZipEntry(relativePath);
+			ZipEntry zipEntry = new ZipEntry(relativePath.substring(0, relativePath.length()-1));
 			
 			try {
 				zOs.putNextEntry(zipEntry);
@@ -168,12 +162,7 @@ public class Compressor {
 			
 			//because directory is deleted Java removes the trailing directory '/' 
 			
-			if(relativePath.endsWith("/"))
-				directoryRelativePath= relativePath;
-			else
-				directoryRelativePath = relativePath +"/";
-			
-			ByteArrayInputStream bis = new ByteArrayInputStream(streamsMap.get(directoryRelativePath));
+			ByteArrayInputStream bis = new ByteArrayInputStream(streamsMap.get(relativePath));
 			streamsMap.remove(directoryRelativePath);
 			byte[] buffer = new byte[256];
 			

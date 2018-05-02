@@ -35,7 +35,7 @@ public class CompressTest {
 	
 	@Test
 	public void testNonNestedWithFolderCompression() throws IOException {
-		testCompression("readmeNestedWithFolder");
+		testCompression("readmeWithFolder");
 		
 		
 		
