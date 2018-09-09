@@ -16,7 +16,9 @@ public class CompressTest {
 
 	Compressor compress;
 	Extractor extract;
-	
+
+
+	//testing
 	@Before
 	public void setup() {
 		extract = new Extractor();
