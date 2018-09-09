@@ -11,7 +11,7 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+//CompressTest
 public class CompressTest {
 
 	Compressor compress;
